@@ -60,19 +60,20 @@ public class FlightController {
 				archiveView.add(looping);
 			}
 		}
-		int nilai = 0;
-		if (nilai == 0) {
-			return "Salah";
+		if(archiveView.size() == 0) {
+			return "error";
 		}
 		
-		model.addAttribute("listFlight", archiveView);
+		model.addAttribute("fnum", flightNumber);
+		model.addAttribute("flights", archiveView);
 		return "view-flight";
+		
 	}
 	
 	@RequestMapping(value="/flight/delete/{id}", method = RequestMethod.GET)
 	private String delPilot(@PathVariable(value = "id")Long id) {
 		flightService.deleteFlight(id);
-		return "HapusFlight";
+		return "hapusFlight";
 	}
 	
 	@RequestMapping(value="/flight/update/{id}", method = RequestMethod.GET)
